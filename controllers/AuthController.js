@@ -1,5 +1,5 @@
 import { compareSync, hashSync } from "bcrypt";
-import User from "../models/User";
+import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 
 const AuthController = {};
@@ -45,6 +45,7 @@ AuthController.login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
+    
       return res.status(400).json({
         success: false,
         message: "email and password are required",
