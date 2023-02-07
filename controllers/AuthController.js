@@ -1,5 +1,6 @@
-import { hashSync } from "bcrypt";
+import { compareSync, hashSync } from "bcrypt";
 import User from "../models/User";
+import jwt from "jsonwebtoken";
 
 const AuthController = {};
 
@@ -37,4 +38,44 @@ AuthController.register = async (req, res) => {
       error: error?.message || error,
     });
   }
+};
+
+AuthController.login = async (req, res) =>{
+    try {
+        const {email, password} = req.body;
+
+        if(!email || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "email and password are required",
+            });
+        }
+        const user = await User.findOne({email:email});
+        const isValidPassword = compareSync(password,user.password);
+
+        if(!isValidPassword){
+            return res.status(401).json({
+                success: false,
+                message: "Bad credentials",
+            });
+        }
+
+        const token = jwt.sign(
+            {user_id: user._id, user_role: user.role},
+            process.env.JWT_SECRET,
+            {expiresIn: "20m"}
+        );
+
+        return res.status(200).json({
+            success: true,
+            message: `User Logged as ${user.role.toUpperCase()}`,
+            token:token,
+            user: user,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "User login failed",
+        });
+    }
 };
