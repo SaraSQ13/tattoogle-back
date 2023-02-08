@@ -45,7 +45,6 @@ AuthController.login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-    
       return res.status(400).json({
         success: false,
         message: "email and password are required",
@@ -60,7 +59,6 @@ AuthController.login = async (req, res) => {
         message: "Bad credentials",
       });
     }
-
     const token = jwt.sign(
       { user_id: user._id, user_role: user.role },
       process.env.JWT_SECRET,
@@ -93,3 +91,4 @@ AuthController.validateToken = async (req, res) => {
 };
 
 export default AuthController;
+ 
