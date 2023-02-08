@@ -20,3 +20,24 @@ TattoerController.getAll = async (req, res) => {
     });
   }
 };
+
+
+// Get tattoer by name
+
+TattoerController.getByName = async (req, res) => {
+    try {
+        const tattoer = await Tattoer.findOne({name: req.params.name});
+
+        return res.status(200).json({
+            success: true,
+            message: "Get tattoer successfully",
+            data: tattoer,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Error retrieving tattoer",
+            error: error.messag,
+        });
+    }
+};
