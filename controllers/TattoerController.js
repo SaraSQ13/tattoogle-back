@@ -41,3 +41,5 @@ TattoerController.getByName = async (req, res) => {
         });
     }
 };
+
+export default TattoerController;
