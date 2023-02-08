@@ -28,7 +28,7 @@ UserController.getByName = async (req, res) => {
     const user = await User.findOne({ name: req.params.name });
 
     return res.status(200).json({
-      succes: true,     
+      succes: true,
       message: "Get user successfully",
       data: user,
     });
@@ -43,17 +43,16 @@ UserController.getByName = async (req, res) => {
 
 //delete user by Id
 
-UserController.deleteById = async (req,res) => {
-    try {
-        const deletedOne = await User.deleteOne({_id: req.params.id});
-        res.json({
-            message: `${req.params.id} DELELTED`,
-            data: deletedOne,
-        });
-    } catch (error){
-        res.status(500).send ("internal error");
-    };
-}
-
+UserController.deleteById = async (req, res) => {
+  try {
+    const deletedOne = await User.deleteOne({ _id: req.params.id });
+    res.json({
+      message: `${req.params.id} DELELTED`,
+      data: deletedOne,
+    });
+  } catch (error) {
+    res.status(500).send("internal error");
+  }
+};
 
 export default UserController;
