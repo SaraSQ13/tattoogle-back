@@ -2,7 +2,7 @@ import Studio from "../models/Studio.js";
 
 const StyleController = {};
 
-// Get all studios
+// Get all style
 StyleController.getAll = async (req, res) => {
   try {
     const style = await Studio.find();
@@ -21,7 +21,7 @@ StyleController.getAll = async (req, res) => {
   }
 };
 
-// Get studio by name
+// Get style by name
 
 StyleController.getByName = async (req, res) => {
   try {
