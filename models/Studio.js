@@ -11,6 +11,6 @@ const StudioSchema = new Schema({
   },
 });
 
-const Studio = model("Tattoer", TattoerSchema);
+const Studio = model("Studio", StudioSchema);
 
 export default Studio;
