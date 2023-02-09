@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const StudioSchema = new Schema({
-  name: {
+  studio_name: {
     type: String,
     required: true,
   },

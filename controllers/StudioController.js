@@ -25,7 +25,7 @@ StudioController.getAll = async (req, res) => {
 
 StudioController.getByName = async (req, res) => {
   try {
-    const studio = await Studio.findOne({ name: req.params.name });
+    const studio = await Studio.findOne({ studio_name: req.params.studio_name });
 
     return res.status(200).json({
       success: true,

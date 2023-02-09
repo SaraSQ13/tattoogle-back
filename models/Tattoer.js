@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const TattoerSchema = new Schema({
-  name: {
+  tattoer_name: {
     type: String,
     required: true,
   },

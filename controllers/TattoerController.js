@@ -26,7 +26,7 @@ TattoerController.getAll = async (req, res) => {
 
 TattoerController.getByName = async (req, res) => {
     try {
-        const tattoer = await Tattoer.findOne({name: req.params.name});
+        const tattoer = await Tattoer.findOne({tattoer_name: req.params.tattoer_name});
 
         return res.status(200).json({
             success: true,
