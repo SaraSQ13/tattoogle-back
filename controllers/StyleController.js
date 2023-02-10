@@ -1,11 +1,11 @@
-import Studio from "../models/Studio.js";
+import Style from "../models/Style.js";
 
 const StyleController = {};
 
 // Get all style
 StyleController.getAll = async (req, res) => {
   try {
-    const style = await Studio.find();
+    const style = await Style.find();
 
     return res.status(200).json({
       success: true,
@@ -25,7 +25,7 @@ StyleController.getAll = async (req, res) => {
 
 StyleController.getByName = async (req, res) => {
   try {
-    const style = await Studio.findOne({ style: req.params.style });
+    const style = await Style.findOne({ style: req.params.style });
 
     return res.status(200).json({
       success: true,
