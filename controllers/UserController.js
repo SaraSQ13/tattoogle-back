@@ -55,4 +55,32 @@ UserController.deleteById = async (req, res) => {
   }
 };
 
+// save tattoer by id at user panel
+UserController.saveUserTattoers = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const tattoer = req.body;
+    const match = user.tattoers.find((t) => t._id == tattoer._id);
+
+    if (match) {
+      res.json({
+        message: "User already have this tattoer",
+        inserted: false,
+      });
+    } else {
+      const updatedUser = await User.updateOne(
+        { _id: req.params.userId },
+        { $push: { tattoer: req.body } }
+      );
+      res.json({
+        message: "User tattoers updated successfully",
+        data: updatedUser,
+        inserted: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 export default UserController;
