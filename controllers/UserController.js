@@ -70,7 +70,7 @@ UserController.saveUserTattoers = async (req, res) => {
     } else {
       const updatedUser = await User.updateOne(
         { _id: req.params.userId },
-        { $push: { tattoer: req.body } }
+        { $push: { tattoers: req.body } }
       );
       res.json({
         message: "User tattoers updated successfully",

@@ -7,11 +7,12 @@ import verifyToken from "../middlewares/verifyToken.js";
 
 // GET users listing
 router.get("/", verifyToken, isSuperAdmin, UserController.getAll);
-router.get("/:name", verifyToken, UserController.getByName);
+router.get("/:name", UserController.getByName);
 
 // Delete users
 router.delete("/delete/:id", verifyToken, isSuperAdmin, UserController.deleteById);
 
-//update users
+//update tattoers from users
+router.patch("/:userId/save", UserController.saveUserTattoers);
 
 export default router;
